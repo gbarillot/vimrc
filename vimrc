@@ -14,6 +14,8 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
+Plug 'posva/vim-vue'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 """""""""""""""""""""""""""
@@ -59,7 +61,7 @@ set nocindent
 set background=dark
 set termguicolors
 colorscheme quantum
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 
 " Airline
 set laststatus=2
