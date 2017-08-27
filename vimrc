@@ -7,7 +7,8 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -15,16 +16,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
 Plug 'posva/vim-vue'
-Plug 'digitaltoad/vim-pug'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'djoshea/vim-autoread'
+Plug 'slim-template/vim-slim'
 
 call plug#end()
 """""""""""""""""""""""""""
+
+" disable bells
+autocmd! GUIEnter * set vb t_vb=
 
 " Do not make vim compatible with vi.
 set nocompatible
 
 " Do not create .swp files
-:set noswapfile
+set noswapfile
 
 " Number the lines.
 set number
@@ -50,6 +56,10 @@ set clipboard+=unnamed
 " Keep Undo history on buffer change
 set hidden
 
+" Reload files after change on Disk
+"set autoread
+"au CursorHold * checktime
+
 " Turn on syntax hightlighting.
 set syntax=on
 set nowrap
@@ -57,11 +67,15 @@ set tabstop=2
 set shiftwidth=2
 set nocindent
 
+" Speed optimization
+set ttyfast
+set lazyredraw
+
 " Theme
 set background=dark
 set termguicolors
 colorscheme quantum
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
 
 " Airline
 set laststatus=2
@@ -84,6 +98,9 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
+
+" Start Minimap
+" autocmd VimEnter * Minimap
 
 " Delete buffer while keeping window layout (don't close buffer's windows).
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
@@ -171,6 +188,11 @@ augroup qf
     autocmd VimEnter        *     cwindow
 augroup END
 
+" Change cursor appearance depending on the current mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 """"""""""""""""""""""""""
 " Custom bindings
 """"""""""""""""""""""""""
@@ -193,3 +215,5 @@ noremap <silent> <C-q> :Bclose!<CR>
 " Toggle Nerdtree
 noremap <silent> <C-f> ::NERDTreeToggle<CR>
 
+" Select all
+map <C-a> <esc>ggVG<CR>
